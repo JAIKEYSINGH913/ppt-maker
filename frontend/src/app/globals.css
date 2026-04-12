@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #e0e0e0;
+  --primary: #39ff14; /* Toxic core green */
+  --accent: #ff00ff; /* Hot magenta */
+  --success: #00ffff; /* Cyan */
+  --surface: #111111;
+  --border-color: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-surface: var(--surface);
+
+  --font-pixel: var(--font-pixel);
+  --font-code: var(--font-code);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-code), monospace;
+  font-size: 1.5rem;
+  overflow-x: hidden;
+  image-rendering: pixelated;
+}
+
+/* Grid background texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(51, 51, 51, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(51, 51, 51, 0.2) 2px, transparent 2px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── Typography Utility ───────────────────────── */
+
+h1, h2, h3, h4, .font-pixel {
+  font-family: var(--font-pixel), sans-serif;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.font-code {
+  font-family: var(--font-code), monospace;
+  font-size: 1.5rem;
+}
+
+/* ─── Pixel Art UI Blocks ────────────────────────*/
+
+.pixel-box {
+  background: var(--surface);
+  border: 4px solid var(--border-color);
+  box-shadow: 8px 8px 0px 0px #222222;
+  position: relative;
+  transition: transform 0.1s steps(2, end), box-shadow 0.1s steps(2, end);
+}
+
+.pixel-box-primary {
+  border-color: var(--primary);
+  box-shadow: 8px 8px 0px 0px rgba(57, 255, 20, 0.5);
+  color: var(--primary);
+}
+
+.pixel-box-success {
+  border-color: var(--success);
+  box-shadow: 8px 8px 0px 0px rgba(0, 255, 255, 0.5);
+  color: var(--success);
+}
+
+.pixel-box-hover:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0px 0px #222222;
+}
+
+.pixel-box-primary.pixel-box-hover:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0px 0px rgba(57, 255, 20, 0.5);
+}
+
+.pixel-box-active:active {
+  transform: translate(8px, 8px);
+  box-shadow: 0px 0px 0px 0px transparent;
+}
+
+/* ─── Buttons ──────────────────────────────────── */
+
+.btn-pixel {
+  font-family: var(--font-pixel), sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 1.5rem 2rem;
+  background: #000000;
+  color: var(--primary);
+  border: 4px solid var(--primary);
+  box-shadow: 8px 8px 0px 0px var(--primary);
+  cursor: pointer;
+  transition: transform 0.1s steps(2, end), box-shadow 0.1s steps(2, end), background 0.1s steps(2, end), color 0.1s steps(2, end);
+}
+
+.btn-pixel:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0px 0px var(--primary);
+  background: var(--primary);
+  color: #000000;
+}
+
+.btn-pixel:active {
+  transform: translate(8px, 8px);
+  box-shadow: 0px 0px 0px 0px var(--primary);
+}
+
+/* ─── Scrollbar ────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: 4px solid var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border: 4px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ─── Selection ────────────────────────────────── */
+
+::selection {
+  background: var(--primary);
+  color: #000;
+}

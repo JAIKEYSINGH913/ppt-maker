@@ -1,0 +1,138 @@
+[
+    {
+        "id": "Template_Accenture Tech Acquisition Analysis",
+        "filename": "Template_Accenture Tech Acquisition Analysis.pptx",
+        "layouts": [
+            {
+                "index": 0,
+                "name": "1_Cover",
+                "placeholders": [
+                    "Text Placeholder 12",
+                    "Text Placeholder 12"
+                ]
+            },
+            {
+                "index": 1,
+                "name": "2_Cover",
+                "placeholders": [
+                    "Text Placeholder 12",
+                    "Text Placeholder 12"
+                ]
+            },
+            {
+                "index": 2,
+                "name": "Divider",
+                "placeholders": [
+                    "Text Placeholder 12"
+                ]
+            },
+            {
+                "index": 3,
+                "name": "Blank",
+                "placeholders": []
+            },
+            {
+                "index": 4,
+                "name": "Title only",
+                "placeholders": [
+                    "Title 1",
+                    "Content Placeholder 8",
+                    "Slide Number Placeholder 3"
+                ]
+            },
+            {
+                "index": 5,
+                "name": "Thank You",
+                "placeholders": []
+            }
+        ],
+        "count": 6
+    },
+    {
+        "id": "Template_AI Bubble_ Detection, Prevention, and Investment Strategies",
+        "filename": "Template_AI Bubble_ Detection, Prevention, and Investment Strategies.pptx",
+        "layouts": [
+            {
+                "index": 0,
+                "name": "Cover",
+                "placeholders": [
+                    "Text Placeholder 15",
+                    "Text Placeholder 15"
+                ]
+            },
+            {
+                "index": 1,
+                "name": "Divider",
+                "placeholders": [
+                    "Text Placeholder 15"
+                ]
+            },
+            {
+                "index": 2,
+                "name": "Blank",
+                "placeholders": []
+            },
+            {
+                "index": 3,
+                "name": "Title only",
+                "placeholders": [
+                    "Title 1",
+                    "Content Placeholder 8",
+                    "Slide Number Placeholder 3"
+                ]
+            },
+            {
+                "index": 4,
+                "name": "1_Thank you",
+                "placeholders": []
+            }
+        ],
+        "count": 5
+    },
+    {
+        "id": "Template_UAE Progress toward 2050 Solar Energy Targets_20250729_120637",
+        "filename": "Template_UAE Progress toward 2050 Solar Energy Targets_20250729_120637.pptx",
+        "layouts": [
+            {
+                "index": 0,
+                "name": "0_Title Company",
+                "placeholders": [
+                    "Google Shape;14;p2"
+                ]
+            },
+            {
+                "index": 1,
+                "name": "C_Section blue",
+                "placeholders": [
+                    "Google Shape;76;p10"
+                ]
+            },
+            {
+                "index": 2,
+                "name": "1_E_Title, Subtitle and Body",
+                "placeholders": [
+                    "Google Shape;92;p14",
+                    "Google Shape;93;p14",
+                    "Text Placeholder 4",
+                    "Google Shape;7;p1"
+                ]
+            },
+            {
+                "index": 3,
+                "name": "1_E_Title, Subtitle and Body",
+                "placeholders": [
+                    "Text Placeholder 4",
+                    "Google Shape;7;p1"
+                ]
+            },
+            {
+                "index": 4,
+                "name": "1_E_Title, Subtitle and Body",
+                "placeholders": [
+                    "Google Shape;7;p1"
+                ]
+            }
+        ],
+        "count": 5
+    }
+]

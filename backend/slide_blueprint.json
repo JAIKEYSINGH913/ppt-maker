@@ -1,0 +1,165 @@
+{
+    "theme": "Cover",
+    "meta": {
+        "title": "Gilsonite Market Analysis: Romania and Eastern Europe",
+        "total_slides": 11,
+        "version": "1.0"
+    },
+    "slides": [
+        {
+            "id": 1,
+            "type": "title",
+            "template": "TITLE_SLIDE",
+            "data": {
+                "title": "Gilsonite Market Analysis: Romania and Eastern Europe",
+                "subtitle": "Introduce the topic."
+            }
+        },
+        {
+            "id": 2,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "1. Market Volume and Import Trends",
+                "left_bullets": [
+                    "This section provides a data-driven analysis of Gilsonite market volumes and import trends in Romania and Eastern Europe, focusing on historical and recent figures, supplier flo...",
+                    "### 1.1. Historical and recent market size (2020\u20132025)",
+                    "Reliable country\u2011level data for Gilsonite (HS 27011200) imports into Romania and Eastern Europe is limited in publicly accessible sources as of November 8, 2025. Global and regi...",
+                    "Therefore, while global and European-level trends suggest steady growth, precise historical and recent market size data (2020\u20132025) for Romania and the specified Eastern Europea..."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 3,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "2. Main Importers and Competitive Landscape",
+                "left_bullets": [
+                    "RAHA Gilsonite (Iran): Vertically integrated producer and exporter with mining, processing, and packaging operations in Kermanshah. Exports approximately 10 000 MT annually and...",
+                    "SGilsonite (UAE/Iran): Distributor and exporter with commercial offices in Tehran, Bandar Abbas, and Erbil, Iraq. Offers multiple product grades and emphasizes streamlined expor...",
+                    "Asia Gilsonite (Iran): Exporter to over 21 countries, leveraging dry ash removal technology to deliver high-quality Gilsonite with ash content below 5 % 7.",
+                    "This section examines the leading importers and competitive dynamics of the Gilsonite market in Romania and Eastern Europe, with emphasis on supply chain hubs such as the UAE an..."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 4,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "3. Price Trends and Competitive Pricing Analysis",
+                "left_bullets": [
+                    "Position the USD 350\u2013400 per ton FOB, 99% purity offer as a value\u2011premium option\u2014lower than typical premium grade prices yet higher quality than standard grades.",
+                    "Leverage seasonal timing: target purchases in spring\u2013autumn to offer clients cost savings of 10\u201315% compared to winter pricing 11.",
+                    "Offer volume discounts or long\u2011term contracts to mitigate logistics cost variability and secure customer loyalty, as bulk buying is known to reduce per\u2011unit costs 10.",
+                    "Emphasize purity and low ash content in marketing to justify pricing and appeal to high\u2011performance sectors like coatings and inks."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 5,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "4. Market Saturation and Entry Potential",
+                "left_bullets": [
+                    "Limited availability of high\u2011purity Gilsonite (e.g., 99 % purity) in Eastern Europe, especially for premium applications in coatings, inks, and foundry sectors 14.",
+                    "Under\u2011penetration in specialty chemical and sustainable infrastructure segments, despite global trends showing rising demand for eco\u2011friendly additives 3.",
+                    "Supply chain constraints due to concentration of production in the U.S., Iran, and limited regional processing capacity, leading to price volatility and inconsistent quality 15.",
+                    "Absence of localized distribution networks and technical support in Eastern Europe, limiting adoption in niche industrial applications."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 6,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "5. Applications and Demand by Industry Sector",
+                "left_bullets": [
+                    "Asphalt and road construction require low\u2011ash (<5 %) Gilsonite with high softening point to enhance rut resistance, UV stability, and pavement lifespan\u2014studies show 5\u201310 % addit...",
+                    "In oil & gas drilling fluids, ultra\u2011fine (5\u201310 \u00b5m) and thermally stable Gilsonite grades are essential for shale stabilization, reducing fluid loss and improving wellbore integr...",
+                    "In coatings and paints, low\u2011ash Gilsonite improves adhesion, gloss, and corrosion resistance; anti\u2011corrosion coatings with Gilsonite can extend service life by 25 % 17.",
+                    "In inks, Gilsonite serves as a carbon black dispersant at 2\u20135 % concentrations, or as a resin component at 10\u201315 %, though higher levels pose viscosity and filtration challenges..."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 7,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "6. Import Barriers and Regulatory Framework",
+                "left_bullets": [
+                    "Determine applicable customs duty and VAT via TARIC or Customs Info using HS Code 27011200.",
+                    "Verify whether any anti\u2011dumping or countervailing duties apply to Gilsonite.",
+                    "Confirm whether import licensing or special permits are required.",
+                    "Ensure compliance with the Union Customs Code and national implementing regulations (UCC, EU 2015/2446, 2015/2447, 2016/341)."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 8,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "7. Market Forecast to 2030",
+                "left_bullets": [
+                    "Infrastructure expansion: EU and national investments in road rehabilitation and sustainable construction boost demand for Gilsonite-modified asphalt 16.",
+                    "Sustainability mandates: European shift toward natural additives in coatings and inks supports Gilsonite uptake 23.",
+                    "Supply constraints: Concentrated production (e.g., Utah) and environmental restrictions may limit supply, potentially elevating prices and incentivizing alternative sourcing 16.",
+                    "Industrial diversification: Growing use in oil & gas, coatings, inks, and foundry sectors broadens demand base 3."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 9,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "8. Conclusion and Strategic Recommendations",
+                "left_bullets": [
+                    "Position the USD 350\u2013400/ton FOB, 99 % purity offer as a value-premium alternative\u2014highlighting high purity, competitive pricing, and seasonal timing to undercut premium-grade b...",
+                    "Establish partnerships with local distributors or form joint ventures in Romania to overcome brand recognition and logistics limitations, enabling faster market penetration and...",
+                    "Secure long-term supply contracts with reliable producers (e.g., Iran or UAE-based suppliers) to ensure consistent quality and mitigate supply volatility risks.",
+                    "Target high-growth application sectors\u2014such as sustainable asphalt modifiers, eco-friendly coatings, and advanced drilling fluids\u2014where high-purity Gilsonite offers technical ad..."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 10,
+            "type": "split",
+            "template": "SPLIT_SLIDE",
+            "data": {
+                "title": "9. References and Data Sources",
+                "left_bullets": [
+                    "United Nations COMTRADE via TradingEconomics and WITS for HS\u2011coded trade flows (e.g., Romania\u2019s imports of natural bitumen HS 27011200 and related categories) and export data fo...",
+                    "Eurostat\u2019s Comext database for EU\u2011level import and energy product trends, providing context on broader energy and solid fuel trade dynamics 25.",
+                    "TrendEconomy for Romania\u2019s overall merchandise import values and partner breakdowns, offering macro\u2011level import context 26.",
+                    "Eurostat news releases (2025) on EU energy product import trends, including petroleum oils and solid fuels, to frame regional demand dynamics 25."
+                ],
+                "right_visual": "chevron_flow"
+            }
+        },
+        {
+            "id": 11,
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "data": {
+                "title": "Thank You",
+                "bullets": [
+                    "Questions & Discussion"
+                ]
+            }
+        }
+    ]
+}

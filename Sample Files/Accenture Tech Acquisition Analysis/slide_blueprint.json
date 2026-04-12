@@ -1,0 +1,174 @@
+[
+    {
+        "title": "Accenture Tech Acquisition Analysis",
+        "summary": "An strategic deep-dive into Accenture\u2019s high-volume acquisition framework and its impact on digital reinvention from 2020 to 2025.",
+        "visual_intent": "clean-title",
+        "data_points": [
+            "Timeline: 2020 \u2013 2025",
+            "Strategic Focus: AI, Cybersecurity, and Cloud",
+            "Core Objective: Enabling the 'Reinvention Services' model"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Executive Overview: Aggressive Growth",
+        "summary": "Accenture has outpaced competitors with 326 acquisitions over five years, pivoting heavily toward AI and cloud leadership.",
+        "visual_intent": "metric-dashboard",
+        "data_points": [
+            "Total Acquisitions (5 years): 326 companies",
+            "FY24 Investment: $6.6 Billion",
+            "FY25 AI Bookings: $5.9 Billion",
+            "Workforce Pivot: $865M investment in talent realignment"
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "highlight": "High-Contrast Blue"
+        }
+    },
+    {
+        "title": "Evolution of the Acquisition Strategy",
+        "summary": "The strategy has shifted from traditional consulting to building a comprehensive AI-enabled reinvention ecosystem.",
+        "visual_intent": "chevron-flow",
+        "data_points": [
+            "Traditional Era: Focused on regional consulting expansion",
+            "Digital Era: Heavy emphasis on Cloud and Infrastructure",
+            "Reinvention Era (Current): Integrated AI, Agentic AI, and Learning platforms"
+        ],
+        "theme_tokens": {
+            "accent": "Electric Blue"
+        }
+    },
+    {
+        "title": "Investment Cadence (2020\u20132025)",
+        "summary": "Annual investment value has tripled since 2020, reaching peak maturity in FY24/25.",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "FY20: $1.5B (34 acquisitions)",
+            "FY21: $4.2B (46 acquisitions)",
+            "FY24: $6.6B (46 acquisitions)",
+            "FY25 (to date): High-value targets like CyberCX ($650M+)"
+        ],
+        "theme_tokens": {
+            "bar_color": "High-Contrast Blue"
+        }
+    },
+    {
+        "title": "Global Distribution of Targets",
+        "summary": "Accenture maintains a globally balanced strategy, targeting specific centers of excellence in Europe, APAC, and North America.",
+        "visual_intent": "icon-grid",
+        "data_points": [
+            "Europe: Engineering and Infrastructure (Halfspace, Systema)",
+            "Asia-Pacific: Cybersecurity and Fintech (CyberCX, Percipient)",
+            "North America: Digital Transformation and Learning (Ascendient, Yumemi)"
+        ],
+        "theme_tokens": {
+            "background": "White",
+            "icon_color": "Deep Blue"
+        }
+    },
+    {
+        "title": "Core Domain: AI & Digital Transformation",
+        "summary": "Rapid expansion of the 'Center for Advanced AI' through specialized boutique acquisitions.",
+        "visual_intent": "comparison-table",
+        "data_points": [
+            "Halfspace (Denmark): Advanced AI decision-making",
+            "Yumemi (Japan): Design engineering and GenAI innovation",
+            "SI&C (Japan): Cloud and Data delivery expertise",
+            "NeuraFlash: Agentic AI and Salesforce integration"
+        ],
+        "theme_tokens": {
+            "header_bg": "Dark Blue"
+        }
+    },
+    {
+        "title": "Core Domain: Cybersecurity & Identity",
+        "summary": "The CyberCX acquisition marks a shift toward large-scale, sovereign-capable security services.",
+        "visual_intent": "metric-dashboard",
+        "data_points": [
+            "CyberCX: Largest cyber deal to date (1,400 professionals)",
+            "IAMConcepts: Canadian Identity Access Management (IAM) leader",
+            "FY25 Security Revenue: $10 Billion milestone",
+            "Focus: Managed Detection, Response, and Sovereign Secure Cloud"
+        ],
+        "theme_tokens": {
+            "card_style": "Shadow Border",
+            "text_color": "Cyan"
+        }
+    },
+    {
+        "title": "Core Domain: Learning & Talent Enablement",
+        "summary": "Strategic use of the 'LearnVantage' platform to address global skills disruption.",
+        "visual_intent": "icon-grid",
+        "data_points": [
+            "Aidemy (Tokyo): AI reskilling and system development",
+            "Ascendient Learning: 850+ virtual IT/Digital certification courses",
+            "TalentSprint: High-end tech education scaling",
+            "Objective: Bridge the 39% skills disruption gap by 2030"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue"
+        }
+    },
+    {
+        "title": "The 'Reinvention Services' Model",
+        "summary": "Acquisitions are integrated into a unified operating model to deliver multi-service solutions faster.",
+        "visual_intent": "chevron-flow",
+        "data_points": [
+            "Unified Unit: Strategy + Consulting + Tech + Operations + Song",
+            "Consolidated Leadership: Chief Services Officer framework",
+            "Value: 60% higher revenue growth for 'Reinvention-ready' clients"
+        ],
+        "theme_tokens": {
+            "primary_color": "Light Gray",
+            "highlight": "Dark Blue"
+        }
+    },
+    {
+        "title": "Financial Performance & AI Impact",
+        "summary": "Acquisitions have successfully converted GenAI interest into multibillion-dollar bookings.",
+        "visual_intent": "chart-line",
+        "data_points": [
+            "GenAI Bookings (FY25): $5.9B (2x increase)",
+            "GenAI Revenue (FY25): $2.7B (3x increase)",
+            "Total Annual Revenue: $69.7B (7% YoY growth)",
+            "Free Cash Flow: $10.9B (supporting continued M&A)"
+        ],
+        "theme_tokens": {
+            "line_color": "Cyan"
+        }
+    },
+    {
+        "title": "Future Horizons: Emerging Tech Targets",
+        "summary": "Forward-looking strategy focuses on Agentic AI and Sovereign technology infrastructure.",
+        "visual_intent": "icon-grid",
+        "data_points": [
+            "Agentic AI: Autonomous AI agent orchestration platforms",
+            "Sovereign AI: National-level AI governance and data residency",
+            "Quantum-Safe Security: Future-proofing digital cores",
+            "Agent Builders: Specialized multi-agent collaboration tools"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Electric Blue"
+        }
+    },
+    {
+        "title": "Strategic Recommendations",
+        "summary": "Maintaining competitive advantage requires prioritized domain focus and AI-driven integration.",
+        "visual_intent": "chevron-flow",
+        "data_points": [
+            "Prioritize APAC: Target high-growth AI hubs in Singapore and Japan",
+            "AI-Driven PMI: Use Agentic AI to automate post-merger integration",
+            "Modernize Core: Focus on targets that eliminate client technical debt",
+            "Expand Sovereign Cloud: Ensure regional compliance in Europe"
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "text_color": "White"
+        }
+    }
+]

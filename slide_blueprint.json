@@ -1,0 +1,232 @@
+[
+    {
+        "title": "Schneider Electric in Data Center Cooling Market",
+        "summary": "Detailed analysis of Schneider Electric's strategic role and growth in the data center cooling market focusing on CDUs.",
+        "visual_intent": "clean-title",
+        "data_points": [
+            "Detailed analysis of Schneider Electric's strategic role and growth in the data center cooling market focusing on CDUs."
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Agenda",
+        "summary": "A structured overview of the presentation flow",
+        "visual_intent": "agenda",
+        "data_points": [
+            "1. Executive Overview",
+            "2. Schneider Electric SE Company Profile",
+            "3. Data Center Cooling Market Analysis",
+            "4. Schneider Electric's Cooling Solutions Portfolio",
+            "5. Competitive Landscape Analysis"
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Executive Summary",
+        "summary": "The data center cooling market is undergoing rapid transformation, driven by the surge in AI and high-performance computing (HPC) workloads,",
+        "visual_intent": "executive-summary-cards",
+        "data_points": [
+            "The data center cooling market is undergoing rapid transformation, driven by the surge in AI and high-performance computing (HPC) workloads, escalating sustainability mandates,..."
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "1. Executive Overview",
+        "summary": "Acquisition of Motivair: In October 2024, Schneider Electric acquired a 75% controlling interest in Motivair for $850 million, with plans to",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "Acquisition of Motivair: In October 2024, Schneider Electric acquired a 75% controlling interest in Motivair for $850 million, with plans to acquire the remaining 25% by 2028. T...",
+            "NVIDIA Partnership: In March 2024, Schneider Electric announced a collaboration with NVIDIA to develop AI data center reference designs optimized for accelerated computing clust...",
+            "U.S. Manufacturing Expansion: In June 2025, Motivair by Schneider Electric opened its fourth U.S. production facility in Buffalo, New York. This expansion strengthens the U.S. s...",
+            "In 2023, the Data Center & Networks end-market accounted for approximately 21% of Schneider\u2019s group orders, equivalent to around \u20ac8 billion 5."
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "2. Schneider Electric SE Company Profile",
+        "summary": "This section provides a detailed examination of Schneider Electric\u2019s corporate strategy in the AI-era infrastructure and liquid cooling doma",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "This section provides a detailed examination of Schneider Electric\u2019s corporate strategy in the AI-era infrastructure and liquid cooling domain, its global footprint and manufact...",
+            "### 2.1. Corporate strategy in AI-era infrastructure and liquid cooling",
+            "Schneider Electric has strategically positioned itself at the forefront of AI-era infrastructure by integrating advanced liquid cooling technologies into its data center offerin...",
+            "Schneider Electric has also co-developed AI infrastructure reference designs with NVIDIA, integrating power management and liquid cooling controls compatible with NVIDIA Mission..."
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "3. Data Center Cooling Market Analysis",
+        "summary": "AI workloads and high-performance computing: The surge in AI, cloud, and HPC workloads is increasing thermal loads and rack power densities,",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "AI workloads and high-performance computing: The surge in AI, cloud, and HPC workloads is increasing thermal loads and rack power densities, necessitating advanced cooling solut...",
+            "Rising rack power density: Medium-density racks (5\u20139 kW) currently dominate, but high-density racks (>9 kW) are growing rapidly, especially in hyperscale and AI environments 17.",
+            "Sustainability mandates and energy efficiency: Increasing regulatory and corporate pressure to reduce energy consumption and carbon emissions is driving adoption of liquid cooli...",
+            "Energy efficiency regulations: In regions such as Europe, stringent energy and carbon regulations are accelerating the shift toward green cooling technologies 19."
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "4. Schneider Electric's Cooling Solutions Portfolio",
+        "summary": "This section analyzes Schneider Electric\u2019s diverse cooling solutions portfolio, focusing on its end\u2011to\u2011end liquid cooling ecosystem powered ",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "This section analyzes Schneider Electric\u2019s diverse cooling solutions portfolio, focusing on its end\u2011to\u2011end liquid cooling ecosystem powered by the acquisition of Motivair, and d...",
+            "### 4.1. Overview of end\u2011to\u2011end liquid cooling ecosystem (Motivair\u2011powered)",
+            "Schneider Electric\u2019s liquid cooling ecosystem is now fully integrated under the \u201cMotivair by Schneider Electric\u201d brand following its acquisition of a 75 % stake in Motivair in F..."
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "9. Geographic Market Analysis",
+        "summary": "This section analyzes Schneider Electric\u2019s geographic reach and regional market dynamics for its data center cooling solutions, particularly",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "This section analyzes Schneider Electric\u2019s geographic reach and regional market dynamics for its data center cooling solutions, particularly Coolant Distribution Units (CDUs), a...",
+            "### 9.1. Regional strengths: North America, Europe, APAC",
+            "Schneider Electric demonstrates pronounced regional strengths in the data center cooling market across North America, Europe, and Asia\u2011Pacific (APAC).",
+            "In North America, Schneider benefits from its acquisition of Motivair and substantial U.S. investments exceeding USD 700 million through 2027, reinforcing its manufacturing and..."
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "10. Customer Case Studies",
+        "summary": "This section presents real\u2011world examples of Schneider Electric\u2019s cooling solutions in action, focusing on high\u2011density AI/HPC deployments, ",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "This section presents real\u2011world examples of Schneider Electric\u2019s cooling solutions in action, focusing on high\u2011density AI/HPC deployments, performance metrics, customer satisfa...",
+            "### 10.1. High\u2011density AI/HPC deployments using Schneider cooling",
+            "One prominent example is the deployment of Motivair by Schneider Electric\u2019s liquid cooling portfolio, which includes megawatt\u2011class Coolant Distribution Units (CDUs) designed fo...",
+            "### 10.2. Performance metrics: energy savings, PUE, ROI"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "15. Appendix: Technical Specifications",
+        "summary": "Coolant Distribution Units (CDUs): Scalable from 105 kW to 2.5 MW, designed in collaboration with leading silicon manufacturers and certifie",
+        "visual_intent": "chart-bar",
+        "data_points": [
+            "Coolant Distribution Units (CDUs): Scalable from 105 kW to 2.5 MW, designed in collaboration with leading silicon manufacturers and certified for NVIDIA hardware, enabling megaw...",
+            "ChilledDoor rear\u2011door heat exchangers: Rack\u2011agnostic units capable of cooling up to 75 kW per rack, ideal for GPU\u2011intensive workloads 40.",
+            "Liquid\u2011to\u2011Air Heat Dissipation Units (HDU\u2122): Compact units (600 mm width) delivering 100 kW of heat rejection, or up to 132 kW when creating a water loop, matching NVIDIA NVL144...",
+            "Floor\u2011standing (liquid\u2011to\u2011liquid) CDUs: Isolate facility water from the IT loop, optimized for high\u2011density AI workloads 69."
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "16. References and Citations",
+        "summary": "Format: Author or Organization. Year. Title. Source or Publisher. URL (if applicable). Accessed Date.",
+        "visual_intent": "metric-dashboard",
+        "data_points": [
+            "Format: Author or Organization. Year. Title. Source or Publisher. URL (if applicable). Accessed Date.",
+            "For financial data: include the company name, fiscal year or quarter, report title (e.g., Annual Report 2024), page or table number, and URL if available.",
+            "For market data and forecasts: cite the research firm or publication, report title, publication date, and page or section.",
+            "For news or press releases: include the issuing organization, date of release, title, and URL."
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Data Center Segment Order Share (2022\u20132024)",
+        "summary": "Year",
+        "visual_intent": "comparison-table",
+        "data_points": [
+            "Year",
+            "Data Center Order Share (%)",
+            "Approximate Order Value (\u20ac billion)"
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Key Metrics Snapshot",
+        "summary": "Key strategic initiatives from 2022 to 2025 include",
+        "visual_intent": "metric-dashboard",
+        "data_points": [
+            "Key strategic initiatives from 2022 to 2025 include",
+            "Schneider Electric\u2019s data center segment has been a key growth driver from 2022 through 2025",
+            "In 2024, data centers represented about 24% of orders, up from 23% in 2023 and 19% in 2022, reflecting accelerating demand 6.",
+            "Title: Data Center Segment Order Share (2022\u20132024)"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Conclusion & Key Takeaways",
+        "summary": "Edge computing: Smaller, distributed edge sites require compact, efficient cooling. Liquid modules and factory-sealed CDUs are ideal for unm",
+        "visual_intent": "key-takeaways",
+        "data_points": [
+            "Edge computing: Smaller, distributed edge sites require compact, efficient cooling. Liquid modules and factory-sealed CDUs are ideal for unmanned, high-density edge deployments 63.",
+            "Hyperscale data centers: Hyperscalers continue to drive demand for high-density cooling. In the U.S., the data center cooling market is expected to grow from USD 5.96 billion in...",
+            "Retrofit markets: Regulatory incentives and sustainability mandates are accelerating retrofits. In the U.S., federal and state incentives are shortening retrofit payback periods...",
+            "Deepening AI\u2011ready infrastructure: Building on its NVIDIA partnership and EcoStruxure platform, Schneider will likely expand its portfolio of AI-optimized reference designs, int..."
+        ],
+        "theme_tokens": {
+            "primary_color": "Dark Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    },
+    {
+        "title": "Thank You",
+        "summary": "Questions & Discussion",
+        "visual_intent": "thank-you",
+        "data_points": [
+            "Questions & Discussion"
+        ],
+        "theme_tokens": {
+            "primary_color": "Deep Blue",
+            "accent_color": "Cyan",
+            "font_style": "Minimalist Sans-Serif"
+        }
+    }
+]
