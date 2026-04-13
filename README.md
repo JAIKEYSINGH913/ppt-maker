@@ -1,83 +1,93 @@
-# 🌌 Spectral Weaver: Semantic Content Injection Engine
+# 🎨 Spectral Weaver: Master of Agents
 
-Spectral Weaver is a high-fidelity presentation engine designed to transform complex Markdown reports into premium, executive-grade PowerPoint decks. Unlike generic converters, Spectral Weaver uses a **Retention-First** strategy to preserve the brand identity and complex layouts of professional master templates while injecting content with semantic precision.
+**Spectral Weaver** is a high-fidelity, privacy-first presentation engine that transforms Markdown documents into professional PowerPoint decks. powered by **Local AI** (Ollama), it automates storytelling, layout design, and data visualization without any cloud API costs or data privacy concerns.
 
-## ✨ System Architecture
+---
 
-Spectral Weaver operates as a multi-stage AI pipeline:
+## 🚀 Core Features
+
+- **100% Local AI Pipeline**: Utilizes **Ollama (llama3:8b)** for intelligent content distillation and storyline generation.
+- **Native Template Integration**: Dynamically maps content to your existing slide master's **Title Bars**, **Source Boxes**, and **Footers**.
+- **Aesthetic Hardening**: Uses a geometric rendering engine with premium AI-generated assets, glassmorphism, and smooth transitions.
+- **Data Intelligence**: Automated generation of native, theme-aware **Tables and Charts** directly from data-heavy markdown sections.
+- **Industrial Preview**: A full Next.js dashboard to preview, tweak, and synchronize slide layouts before final export.
+
+---
+
+## 🏗️ Architectural Workflow
 
 ```mermaid
 graph TD
-    A[Markdown Source] --> B[Ingest Stage]
-    B --> C[Theme Stage: Master DNA Analysis]
-    C --> D[Storyliner: Narrative Distillation]
-    D --> E[Blueprint: Visual Mapping]
-    E --> F[Canva/AI Enrichment]
-    F --> G[Render: Retention-First Injection]
-    G --> H[Final .pptx Deck]
+    A[Markdown Ingestion] --> B[Ollama Storyliner]
+    B --> C[Aesthetic Blueprinting]
+    C --> D[Theme mapping]
+    D --> E[Geometric Rendering Engine]
+    E --> F[High-Fidelity PPTX Export]
+    
+    subgraph Local AI Node
+    B
+    end
+    
+    subgraph Professional Layouts
+    D --> D1[Title Bars]
+    D --> D2[Source Attribution]
+    D --> D3[Footer Branding]
+    end
+    
+    subgraph Data Visualization
+    E --> E1[Native Tables]
+    E --> E2[Automated Charts]
+    end
 ```
 
-### 1. Ingest & DNA Analysis
-- **Parser**: Strips TOC noise and redundant metadata.
-- **DNA Extraction**: Analyzes the selected Master PPTX to identify existing slide content, layout slots, and brand palettes.
+---
 
-### 2. Narrative Arc (Gemini 1.5 Pro)
-- Converts long-form reports into a 10-15 slide narrative.
-- Maps content dynamically to the **Existing Template Slides** provided in the master file.
+## 🛠️ Tech Stack
 
-### 3. Retention-First Rendering
-- **High-Fidelity Duplication**: Instead of rebuilding from scratch, the engine duplicates the original template slides.
-- **Style Preservation**: Automatically captures font color, size, and weight from template placeholders to ensure injected text is visible and brand-compliant.
-- **Dynamic Content**: Programmatically updates native PowerPoint Charts and Tables.
-- **AI-Driven Visuals**: Replaces stock photos with contextual illustrations using the Pollinations.ai API.
+- **Backend**: FastAPI (Python 3.10+)
+- **Frontend**: Next.js 15 (Turbopack)
+- **AI Engine**: Ollama (llama3:8b)
+- **Rendering**: python-pptx / spectral-weaver-core
 
 ---
 
-## 🚀 Setup & Installation
+## 📥 Setup & Installation
 
-### Backend (FastAPI)
-1. **Navigate to backend**: `cd backend`
-2. **Setup Environment**: Create a `.env` file with your keys:
-   ```env
-   GEMINI_API_KEY=your_key
-   FREEPIK_API_KEY=your_key
-   # Canva Oauth Keys for enterprise features
-   ```
-3. **Install Dependencies**: `pip install -e .`
-4. **Run Server**: `uvicorn md2deck.api:app --reload`
+### Prerequisites
+- [Ollama](https://ollama.com/) installed and running.
+- Python 3.10 or higher.
+- Node.js & npm.
 
-### Frontend (Next.js)
-1. **Navigate to frontend**: `cd frontend`
-2. **Install Dependencies**: `npm install`
-3. **Run App**: `npm run dev`
+### 1. Backend Setup
+```bash
+cd backend
+pip install -r requirements.txt
+# Ensure Ollama is running and pull the model:
+ollama pull llama3:8b
+# Start the API
+python src/md2deck/api.py
+```
 
----
-
-## ⏯️ Running a Generation
-
-1. **Upload Markdown**: Select any `.md` file from the `Test Cases/` directory.
-2. **Select Template**: Choose from the high-fidelity professional masters in the gallery.
-3. **Preview & Edit**: Validate the AI-generated storyboard in the wizard before final rendering.
-4. **Export**: Export to `backend/exports/` where the final PPTX and manifest are bundled.
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ---
 
-## 🧠 Key Design Decisions
-
-### Why "Retention-First"?
-Generic rendering often results in "Blank White" slides that lose branding. Our engine uses the template itself as the donor, ensuring every logo, backdrop, and decorative shape is exactly where the designer intended.
-
-### Semantic Mapping vs. Layout Matching
-Instead of just picking a "Content" layout, our engine looks at the **actual data types** (tables, metrics, charts) and finds the corresponding template slide (Slide 3 might be a table, Slide 5 a chart). This produces a deck that feels custom-built by a human designer.
-
-### Smart Logic Handling
-- **Table Pruning**: If a template has 5 columns but the data has 3, the engine auto-wipes the surplus structure.
-- **Z-Order Preservation**: Replaced images are inserted at the exact same depth as placeholders, preventing background layering issues.
+## 📖 Usage
+1. Open [http://localhost:3000](http://localhost:3000).
+2. Choose one of the professional slide masters (Accenture, AI Bubble, UAE Solar).
+3. Upload your Markdown file.
+4. Preview the AI-distilled slides in the carousel.
+5. Hit **Generate** to receive your production-ready `.pptx` file.
 
 ---
 
-## 📊 Benchmark Examples
-- **Industry Insight**: `Test Cases/AI Bubble_ Detection, Prevention, and Investment Strategies.md`
-- **Government Progress**: `Test Cases/UAE Progress toward 2050 Solar Energy Targets_20250729_120637.md`
+## 🛡️ License & Privacy
+Spectral Weaver is designed for **privacy-first environments**. No content is ever sent to external cloud APIs; all distillation and rendering happen entirely on your local hardware.
 
-Built for the **EZ Hackathon** | Master of Agents Workflow.
+---
+*Created by the Mastering of Agents Team.*

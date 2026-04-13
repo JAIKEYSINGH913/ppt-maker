@@ -1,8 +1,8 @@
 {
     "theme": "Cover",
     "meta": {
-        "title": "Gilsonite Market Analysis: Romania and Eastern Europe",
-        "total_slides": 11,
+        "title": "Banking ROE Competitive Benchmarking Analysis",
+        "total_slides": 14,
         "version": "1.0"
     },
     "slides": [
@@ -10,155 +10,256 @@
             "id": 1,
             "type": "title",
             "template": "TITLE_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "Gilsonite Market Analysis: Romania and Eastern Europe",
-                "subtitle": "Introduce the topic."
+                "title": "Banking ROE Competitive Benchmarking Analysis",
+                "subtitle": "A detailed 5-year analysis on ROE and ROTE performance, examining competitiveness among Bank ABC, FAB, and GIB."
             }
         },
         {
             "id": 2,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "1. Market Volume and Import Trends",
-                "left_bullets": [
-                    "This section provides a data-driven analysis of Gilsonite market volumes and import trends in Romania and Eastern Europe, focusing on historical and recent figures, supplier flo...",
-                    "### 1.1. Historical and recent market size (2020\u20132025)",
-                    "Reliable country\u2011level data for Gilsonite (HS 27011200) imports into Romania and Eastern Europe is limited in publicly accessible sources as of November 8, 2025. Global and regi...",
-                    "Therefore, while global and European-level trends suggest steady growth, precise historical and recent market size data (2020\u20132025) for Romania and the specified Eastern Europea..."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "1. Introduction",
+                "bullets": [
+                    "Bank ABC (Arab Banking Corporation) is a Bahrain\u2011based universal bank with a strong presence across the Middle East, North Africa, and beyond. It offers corporate, retail, and t...",
+                    "First Abu Dhabi Bank (FAB) is the largest bank in the United Arab Emirates by assets, formed through the merger of First Gulf Bank and National Bank of Abu Dhabi. It operates ac...",
+                    "Gulf International Bank (GIB) is a Bahrain\u2011based pan\u2011GCC universal bank, serving wholesale and retail clients across the Gulf region and internationally. It is majority\u2011owned by...",
+                    "Profitability and Capital Efficiency: ROE measures how effectively a bank generates profit from its equity base, serving as a direct gauge of shareholder value creation. ROTE re..."
+                ]
             }
         },
         {
             "id": 3,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "2. Main Importers and Competitive Landscape",
-                "left_bullets": [
-                    "RAHA Gilsonite (Iran): Vertically integrated producer and exporter with mining, processing, and packaging operations in Kermanshah. Exports approximately 10 000 MT annually and...",
-                    "SGilsonite (UAE/Iran): Distributor and exporter with commercial offices in Tehran, Bandar Abbas, and Erbil, Iraq. Offers multiple product grades and emphasizes streamlined expor...",
-                    "Asia Gilsonite (Iran): Exporter to over 21 countries, leveraging dry ash removal technology to deliver high-quality Gilsonite with ash content below 5 % 7.",
-                    "This section examines the leading importers and competitive dynamics of the Gilsonite market in Romania and Eastern Europe, with emphasis on supply chain hubs such as the UAE an..."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "2. Methodology and Data\u2026",
+                "bullets": [
+                    "Official financial statements and investor presentations published by each bank (Bank ABC, FAB, GIB), including annual reports and interim results through Q3 2025. These provide...",
+                    "Regulatory and supervisory disclosures where available, such as Basel III capital ratios and tangible equity breakdowns, to ensure consistency in capital definitions across banks.",
+                    "Industry reports and reputable financial news sources (e.g., Reuters, Investing.com) to supplement and cross\u2011verify reported ROE/ROTE figures and contextual performance metrics 6.",
+                    "Return on Equity (ROE) = (Net Profit Attributable to Shareholders) \u00f7 (Average Total Equity Attributable to Shareholders) \u00d7 100 %."
+                ]
             }
         },
         {
             "id": 4,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "3. Price Trends and Competitive Pricing Analysis",
-                "left_bullets": [
-                    "Position the USD 350\u2013400 per ton FOB, 99% purity offer as a value\u2011premium option\u2014lower than typical premium grade prices yet higher quality than standard grades.",
-                    "Leverage seasonal timing: target purchases in spring\u2013autumn to offer clients cost savings of 10\u201315% compared to winter pricing 11.",
-                    "Offer volume discounts or long\u2011term contracts to mitigate logistics cost variability and secure customer loyalty, as bulk buying is known to reduce per\u2011unit costs 10.",
-                    "Emphasize purity and low ash content in marketing to justify pricing and appeal to high\u2011performance sectors like coatings and inks."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "3. ROTE and ROE\u2026",
+                "bullets": [
+                    "FAB\u2019s ROTE shows a strong upward trajectory, rising from approximately 20.4% in Q1 2025 to 20.5% in H1 2025, indicating consistent capital efficiency and performance above its m...",
+                    "Bank ABC\u2019s ROE and ROTE data are not publicly disclosed in the available interim reports up to Q3 2025; therefore, these metrics remain unavailable for inclusion in the tables....",
+                    "In this section, we present structured data tables for ROTE and ROE for Bank ABC, First Abu Dhabi Bank (FAB), and Gulf International Bank (GIB) over the period 2021\u20132025, includ...",
+                    "Title: Annual ROTE and ROE for Bank ABC and FAB (2021\u20132025)"
+                ]
             }
         },
         {
             "id": 5,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "4. Market Saturation and Entry Potential",
-                "left_bullets": [
-                    "Limited availability of high\u2011purity Gilsonite (e.g., 99 % purity) in Eastern Europe, especially for premium applications in coatings, inks, and foundry sectors 14.",
-                    "Under\u2011penetration in specialty chemical and sustainable infrastructure segments, despite global trends showing rising demand for eco\u2011friendly additives 3.",
-                    "Supply chain constraints due to concentration of production in the U.S., Iran, and limited regional processing capacity, leading to price volatility and inconsistent quality 15.",
-                    "Absence of localized distribution networks and technical support in Eastern Europe, limiting adoption in niche industrial applications."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "4. Comparative Analysis",
+                "bullets": [
+                    "This section provides an analytical comparison of ROTE and ROE performance across Bank ABC, First Abu Dhabi Bank (FAB), and Gulf International Bank (GIB) over the 2021\u20132025 peri...",
+                    "### 4.1. Overall ROTE and ROE performance ranking",
+                    "Based on available data, FAB leads in both ROTE and ROE over the period. In Q1 2025, FAB reported a ROTE of 20.4%, up from 17.4% in Q1 2024, indicating strong capital efficiency...",
+                    "### 4.2. Consistency and volatility assessment across both metrics"
+                ]
             }
         },
         {
             "id": 6,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "5. Applications and Demand by Industry Sector",
-                "left_bullets": [
-                    "Asphalt and road construction require low\u2011ash (<5 %) Gilsonite with high softening point to enhance rut resistance, UV stability, and pavement lifespan\u2014studies show 5\u201310 % addit...",
-                    "In oil & gas drilling fluids, ultra\u2011fine (5\u201310 \u00b5m) and thermally stable Gilsonite grades are essential for shale stabilization, reducing fluid loss and improving wellbore integr...",
-                    "In coatings and paints, low\u2011ash Gilsonite improves adhesion, gloss, and corrosion resistance; anti\u2011corrosion coatings with Gilsonite can extend service life by 25 % 17.",
-                    "In inks, Gilsonite serves as a carbon black dispersant at 2\u20135 % concentrations, or as a resin component at 10\u201315 %, though higher levels pose viscosity and filtration challenges..."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "5. Bank ABC ROTE/ROE\u2026",
+                "bullets": [
+                    "This section examines Bank ABC\u2019s performance in terms of Return on Tangible Equity (ROTE) and Return on Equity (ROE), focusing on profitability and capital efficiency, and the u...",
+                    "### 5.1. Performance highlights (ROTE vs ROE)",
+                    "Bank ABC does not publicly disclose ROTE figures in its financial releases for 2021\u20132025. However, ROE can be approximated using reported net profit and equity data. For example...",
+                    "### 5.2. Key drivers of ROTE and ROE outcomes"
+                ]
             }
         },
         {
             "id": 7,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "6. Import Barriers and Regulatory Framework",
-                "left_bullets": [
-                    "Determine applicable customs duty and VAT via TARIC or Customs Info using HS Code 27011200.",
-                    "Verify whether any anti\u2011dumping or countervailing duties apply to Gilsonite.",
-                    "Confirm whether import licensing or special permits are required.",
-                    "Ensure compliance with the Union Customs Code and national implementing regulations (UCC, EU 2015/2446, 2015/2447, 2016/341)."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "6. FAB ROTE/ROE Analysis",
+                "bullets": [
+                    "Diversified revenue mix: Non\u2011interest income surged\u201422% in Q1 2025 and 41% in H1 2025\u2014boosting fee, commission, FX, and investment income contributions to total revenue 6.",
+                    "Scale and client activity: Strong growth in loans, advances, and deposits (e.g., loans up 7% ytd in H1 2025; deposits up 4%) supported higher operating income and net profit 5.",
+                    "Operational efficiency: Cost\u2011to\u2011income ratio improved to 22.3% in Q1 2025 from 24% a year earlier, reflecting disciplined cost control and AI\u2011driven efficiencies 12.",
+                    "Capital strength: CET1 ratios remained solid (13.4% in H1 2025; 13.7% in Q3 2025), supporting efficient equity utilization without compromising regulatory buffers 5."
+                ]
             }
         },
         {
             "id": 8,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "7. Market Forecast to 2030",
-                "left_bullets": [
-                    "Infrastructure expansion: EU and national investments in road rehabilitation and sustainable construction boost demand for Gilsonite-modified asphalt 16.",
-                    "Sustainability mandates: European shift toward natural additives in coatings and inks supports Gilsonite uptake 23.",
-                    "Supply constraints: Concentrated production (e.g., Utah) and environmental restrictions may limit supply, potentially elevating prices and incentivizing alternative sourcing 16.",
-                    "Industrial diversification: Growing use in oil & gas, coatings, inks, and foundry sectors broadens demand base 3."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "7. GIB ROTE/ROE Analysis",
+                "bullets": [
+                    "Revenue diversification: GIB\u2019s net interest income grew by 5% in 2024 to USD 522.2 million, while net fee and commission income increased by 19% to USD 121.8 million, reflecting...",
+                    "Cost and risk management: Provisions declined significantly from USD 112.0 million in 2023 to USD 54.9 million in 2024, indicating improved asset quality and risk provisioning 17.",
+                    "Equity growth: Shareholders\u2019 equity rose by 5% to USD 2.5 billion in 2024 and by a further 6% to USD 2.6 billion by Q3 2025, which may dilute ROE if net income growth does not\u2026",
+                    "Q3 2025 performance: Net profit for the nine months ended September 30, 2025, increased by 11% to USD 140.2 million, supported by an 18% rise in non\u2011interest income and controll..."
+                ]
             }
         },
         {
             "id": 9,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "8. Conclusion and Strategic Recommendations",
-                "left_bullets": [
-                    "Position the USD 350\u2013400/ton FOB, 99 % purity offer as a value-premium alternative\u2014highlighting high purity, competitive pricing, and seasonal timing to undercut premium-grade b...",
-                    "Establish partnerships with local distributors or form joint ventures in Romania to overcome brand recognition and logistics limitations, enabling faster market penetration and...",
-                    "Secure long-term supply contracts with reliable producers (e.g., Iran or UAE-based suppliers) to ensure consistent quality and mitigate supply volatility risks.",
-                    "Target high-growth application sectors\u2014such as sustainable asphalt modifiers, eco-friendly coatings, and advanced drilling fluids\u2014where high-purity Gilsonite offers technical ad..."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "8. Drivers of ROTE/ROE\u2026",
+                "bullets": [
+                    "This section explores the fundamental factors behind the differences in ROTE and ROE among Bank ABC, First Abu Dhabi Bank (FAB), and Gulf International Bank (GIB), focusing on b...",
+                    "### 8.1. Business model comparison and capital structure nuances",
+                    "Bank ABC operates a diversified international wholesale and Islamic banking model across 15 countries, combining transaction banking, structured finance, capital markets, and di...",
+                    "### 8.2. Asset quality, risk-weighted assets, and management efficiency"
+                ]
             }
         },
         {
             "id": 10,
-            "type": "split",
-            "template": "SPLIT_SLIDE",
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "9. References and Data Sources",
-                "left_bullets": [
-                    "United Nations COMTRADE via TradingEconomics and WITS for HS\u2011coded trade flows (e.g., Romania\u2019s imports of natural bitumen HS 27011200 and related categories) and export data fo...",
-                    "Eurostat\u2019s Comext database for EU\u2011level import and energy product trends, providing context on broader energy and solid fuel trade dynamics 25.",
-                    "TrendEconomy for Romania\u2019s overall merchandise import values and partner breakdowns, offering macro\u2011level import context 26.",
-                    "Eurostat news releases (2025) on EU energy product import trends, including petroleum oils and solid fuels, to frame regional demand dynamics 25."
-                ],
-                "right_visual": "chevron_flow"
+                "title": "9. External Factor Impact\u2026",
+                "bullets": [
+                    "This section examines how external forces shape the Return on Equity (ROE) and Return on Tangible Equity (ROTE) performance of Bank ABC, FAB, and GIB, focusing on regulatory fra...",
+                    "### 9.1. Regulatory environment and supervisory benchmarks (e.g., Basel III, SREP)",
+                    "The UAE banking sector operates under a robust regulatory framework aligned with Basel III standards. As of end\u20112024, UAE banks maintained an average Common Equity Tier 1 (CET1)...",
+                    "The Central Bank of the UAE has also introduced a countercyclical capital buffer (CCyB) of 0.5%, effective January 2026, reinforcing prudential strength but potentially constrai..."
+                ]
             }
         },
         {
             "id": 11,
             "type": "content",
             "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
             "data": {
-                "title": "Thank You",
+                "title": "10. Performance Gap Analysis",
                 "bullets": [
-                    "Questions & Discussion"
+                    "Diversified revenue mix: non\u2011funded income accounted for 43% of group revenue in Q1 2025 7. FAB also achieved strong growth in investment banking and markets, wholesale banking,...",
+                    "Operational efficiency and scale: FAB\u2019s total assets grew 11% year\u2011to\u2011date to AED 1.34 trillion, supporting economies of scale 5.",
+                    "Technology and AI integration: FAB embedded AI across operations, including Agentic AI platform and Microsoft 365 Copilot, enhancing efficiency and service quality 5.",
+                    "Strong balance sheet and capital discipline: FAB maintained robust CET1 ratios (~13.4%) and credit ratings, enabling efficient capital use 5."
                 ]
+            }
+        },
+        {
+            "id": 12,
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
+            "data": {
+                "title": "11. Conclusions and Key\u2026",
+                "bullets": [
+                    "Summary of comparative ROTE and ROE performance FAB consistently outperformed its peers in both ROTE and ROE over the 2021\u20132025 period. By mid\u20112025, FAB achieved a ROTE of appro...",
+                    "Identification of competitive advantages in capital efficiency FAB\u2019s competitive advantage lies in its high capital efficiency, underpinned by strong ROTE and ROE performance. K...",
+                    "Strategic implications for enhancing tangible equity returns To enhance tangible equity returns, Bank ABC should prioritize improving capital efficiency through better capital a...",
+                    "### 11.1. Summary of comparative ROTE and ROE performance"
+                ]
+            }
+        },
+        {
+            "id": 13,
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
+            "data": {
+                "title": "12. References and Data\u2026",
+                "bullets": [
+                    "Bank ABC financial results and investor presentations (Q1, H1, 9M 2025; full-year 2024) as published on Bank ABC\u2019s official website and Bahrain Bourse press releases (e.g., net...",
+                    "First Abu Dhabi Bank (FAB) Annual Report 2024, including RoTE, net profit, revenue, assets, and dividend data 27",
+                    "Reuters and Zawya news articles on FAB\u2019s Q1 2025 performance, including RoTE, net profit, non\u2011interest income, and strategic developments 6",
+                    "StockAnalysis.com financial ratios for FAB, including ROE for 2021\u20132024 28"
+                ]
+            }
+        },
+        {
+            "id": 14,
+            "type": "content",
+            "template": "CONTENT_SLIDE",
+            "style": {
+                "title_color": "#0b1f3a",
+                "body_color": "#0b1f3a",
+                "accent_color": "#56ccf2"
+            },
+            "data": {
+                "title": "",
+                "bullets": []
             }
         }
     ]

@@ -7,29 +7,27 @@ from typing import Any
 
 
 class VisualIntent(StrEnum):
-    CLEAN_TITLE = "clean-title"
-    AGENDA = "agenda"
-    EXECUTIVE_SUMMARY_CARDS = "executive-summary-cards"
-    SECTION_DIVIDER = "chevron-flow"  # Often used as progress flow
-    TIMELINE = "timeline"
-    COMPARISON_GRID = "comparison-table"
-    METRIC_DASHBOARD = "metric-dashboard"
-    PROCESS_FLOW = "process-flow"
-    ICON_CLUSTER = "icon-grid"
-    CHART_FOCUS = "chart-bar"
-    TABLE_FOCUS = "comparison-table"
-    KEY_TAKEAWAYS = "key-takeaways"
+    # Core Layouts
+    TITLE_COVER = "title-cover"
+    SECTION_DIVIDER = "section-divider"
+    BULLET_LIST = "bullet-list"
+    
+    # Archetype Layouts
+    EXECUTIVE_SUMMARY = "executive-summary"
+    TWO_COLUMN_TEXT = "two-column-text"
+    TEXT_WITH_VISUAL = "text-with-visual"
+    METRIC_GRID = "metric-grid"
+    ICON_FEATURE_GRID = "icon-feature-grid"
+    
+    # Data Layouts
+    DATA_TABLE = "data-table"
+    DATA_CHART = "data-chart"
+    
+    # Closing
     THANK_YOU = "thank-you"
-    CHART_LINE = "chart-line"
-    CHEVRON_FLOW = "chevron-flow"
-    ICON_GRID = "icon-grid"
-    INFOGRAPHIC = "infographic"
-    SWOT = "swot"
-    FUNNEL = "funnel"
-    PYRAMID = "pyramid"
 
 
-@dataclass(slots=True)
+@dataclass
 class MarkdownTable:
     title: str
     headers: list[str] = field(default_factory=list)
@@ -37,7 +35,7 @@ class MarkdownTable:
     source_section: str = ""
 
 
-@dataclass(slots=True)
+@dataclass
 class MarkdownSection:
     title: str
     level: int
@@ -48,7 +46,7 @@ class MarkdownSection:
     tables: list[MarkdownTable] = field(default_factory=list)
 
 
-@dataclass(slots=True)
+@dataclass
 class MarkdownDocument:
     path: Path
     raw_text: str
@@ -61,7 +59,7 @@ class MarkdownDocument:
     numeric_facts: list[str] = field(default_factory=list)
 
 
-@dataclass(slots=True)
+@dataclass
 class StorySlide:
     title: str
     narrative_goal: str
@@ -70,21 +68,22 @@ class StorySlide:
     supporting_facts: list[str] = field(default_factory=list)
     source_section: str = ""
     source_slide_index: int | None = None
+    # Use metadata for dynamic fields to avoid process boundary issues
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
-@dataclass(slots=True)
+@dataclass
 class Storyline:
     deck_title: str
     slide_target: int
     slides: list[StorySlide] = field(default_factory=list)
 
 
-@dataclass(slots=True)
+@dataclass
 class SlideBlueprint:
     title: str
     summary: str = ""
-    visual_intent: VisualIntent = VisualIntent.CLEAN_TITLE
+    visual_intent: VisualIntent = VisualIntent.TITLE_COVER
     data_points: list[str] = field(default_factory=list)
     theme_tokens: dict[str, Any] = field(default_factory=dict)
     chart_spec: dict[str, Any] | None = None
@@ -92,6 +91,13 @@ class SlideBlueprint:
     icon_tokens: list[str] = field(default_factory=list)
     icon_paths: list[str] = field(default_factory=list)
     canva_thumb_path: str | None = None
+    
+    # Aesthetic Overrides
+    title_color: str | None = None  # Hex
+    body_color: str | None = None   # Hex
+    accent_color: str | None = None # Hex
+    
+    meta: dict = field(default_factory=dict)
     layout_hint: str | None = None
     max_words: int = 35
     user_overrides: dict[str, Any] = field(default_factory=dict)
@@ -99,7 +105,7 @@ class SlideBlueprint:
     source_slide_index: int | None = None
 
 
-@dataclass(slots=True)
+@dataclass
 class DeckBlueprint:
     deck_title: str
     slides: list[SlideBlueprint] = field(default_factory=list)
@@ -109,7 +115,7 @@ class DeckBlueprint:
         universal_slides = []
         for i, slide in enumerate(self.slides):
             # Determine type and template
-            if slide.visual_intent == VisualIntent.CLEAN_TITLE:
+            if slide.visual_intent == VisualIntent.TITLE_COVER:
                 s_type = "title"
                 template = "TITLE_SLIDE"
                 data = {
@@ -117,9 +123,8 @@ class DeckBlueprint:
                     "subtitle": slide.summary
                 }
             elif slide.visual_intent in {
-                VisualIntent.TIMELINE, VisualIntent.ICON_GRID, VisualIntent.SWOT, 
-                VisualIntent.FUNNEL, VisualIntent.PYRAMID, VisualIntent.CHART_FOCUS,
-                VisualIntent.CHEVRON_FLOW, VisualIntent.ICON_CLUSTER
+                VisualIntent.METRIC_GRID, VisualIntent.ICON_FEATURE_GRID, 
+                VisualIntent.TEXT_WITH_VISUAL, VisualIntent.TWO_COLUMN_TEXT
             }:
                 s_type = "split"
                 template = "SPLIT_SLIDE"
@@ -130,18 +135,30 @@ class DeckBlueprint:
                     "left_bullets": slide.data_points[:5],
                     "right_visual": visual_name
                 }
+            elif slide.visual_intent == VisualIntent.DATA_TABLE:
+                s_type = "content"
+                template = "TABLE_SLIDE"
+                data = {
+                    "title": slide.title,
+                    "table": slide.table_spec
+                }
             else:
                 s_type = "content"
                 template = "CONTENT_SLIDE"
                 data = {
                     "title": slide.title,
-                    "bullets": slide.data_points[:5]
+                    "bullets": slide.data_points[:6]
                 }
 
             universal_slides.append({
                 "id": i + 1,
                 "type": s_type,
                 "template": template,
+                "style": {
+                    "title_color": slide.title_color,
+                    "body_color": slide.body_color,
+                    "accent_color": slide.accent_color
+                },
                 "data": data
             })
 
@@ -156,7 +173,7 @@ class DeckBlueprint:
         }
 
 
-@dataclass(slots=True)
+@dataclass
 class SlotMetadata:
     """Dimensions and type of a layout placeholder."""
     type: str  # e.g., "title", "body", "picture"
@@ -166,7 +183,7 @@ class SlotMetadata:
     height: int
 
 
-@dataclass(slots=True)
+@dataclass
 class MasterLayoutProfile:
     """Theme-specific safe area for Blank slides (inches from slide edges unless noted)."""
     blank_inset_top: float = 0.60
@@ -180,7 +197,7 @@ class MasterLayoutProfile:
     icon_margin_right: float = 0.46
 
 
-@dataclass(slots=True)
+@dataclass
 class LayoutMetadata:
     """Extracted structure of a single slide layout."""
     name: str
@@ -194,7 +211,7 @@ class LayoutMetadata:
     safe_rect: tuple[int, int, int, int] | None = None 
 
 
-@dataclass(slots=True)
+@dataclass
 class SlideContentMetadata:
     """Analysis of an existing slide in a template deck."""
     index: int
@@ -204,7 +221,7 @@ class SlideContentMetadata:
     shape_count: int
 
 
-@dataclass(slots=True)
+@dataclass
 class ThemeProfile:
     master_path: Path
     slide_width: int
@@ -222,7 +239,7 @@ class ThemeProfile:
     template_dna: list[SlideContentMetadata] = field(default_factory=list)
 
 
-@dataclass(slots=True)
+@dataclass
 class SlidePreview:
     """Serializable preview of a single slide for the frontend carousel."""
     index: int
@@ -253,7 +270,7 @@ class SlidePreview:
         }
 
 
-@dataclass(slots=True)
+@dataclass
 class PipelineArtifacts:
     document: MarkdownDocument | None = None
     storyline: Storyline | None = None

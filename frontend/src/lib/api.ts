@@ -129,7 +129,13 @@ export const api = {
   },
 
   downloadExport(jobId: string) {
-    window.open(`${API_BASE_URL}/download/${jobId}`, "_blank");
+    const link = document.createElement("a");
+    link.href = `${API_BASE_URL}/download/${jobId}`;
+    link.setAttribute("download", "presentation_package.zip");
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   },
 
   getManifestUrl(jobId: string) {

@@ -13,11 +13,13 @@ logger = logging.getLogger(__name__)
 # Prefer visually rich intents for a small brand / mood thumbnail strip
 _ENRICH_INTENTS = frozenset(
     {
-        VisualIntent.ICON_GRID,
-        VisualIntent.METRIC_DASHBOARD,
-        VisualIntent.EXECUTIVE_SUMMARY_CARDS,
-        VisualIntent.CHART_FOCUS,
-        VisualIntent.KEY_TAKEAWAYS,
+        VisualIntent.ICON_FEATURE_GRID,
+        VisualIntent.METRIC_GRID,
+        VisualIntent.EXECUTIVE_SUMMARY,
+        VisualIntent.TEXT_WITH_VISUAL,
+        VisualIntent.DATA_CHART,
+        VisualIntent.BULLET_LIST, # Added bullet list for more visuals
+        VisualIntent.TITLE_COVER, # Added cover for visual impact
     }
 )
 
@@ -77,7 +79,7 @@ class CanvaEnrichStage:
                 except Exception as e:
                     logger.warning(f"Failed to fetch AI image for slide {slide.title}: {e}")
 
-            if assigned >= 8:
+            if assigned >= 25:
                 break
                 
         if assigned:

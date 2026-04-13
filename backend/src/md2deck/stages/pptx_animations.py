@@ -311,23 +311,17 @@ def _build_effect_xml(animation_type: AnimationType, shape_id: int, dur: str) ->
 def _normalize_visual_intent_key(visual_intent: str) -> str:
     """Map VisualIntent enum values (hyphenated) to animation map keys (underscore)."""
     aliases: dict[str, str] = {
-        "clean-title": "hero_cover",
-        "executive-summary-cards": "executive_summary_cards",
-        "chevron-flow": "section_divider",
-        "comparison-table": "table_focus",
-        "chart-bar": "chart_focus",
-        "chart-line": "chart_focus",
-        "icon-grid": "icon_cluster",
-        "key-takeaways": "key_takeaways",
+        "title-cover": "title_cover",
+        "executive-summary": "executive_summary",
+        "section-divider": "section_divider",
+        "bullet-list": "bullet_list",
+        "two-column-text": "two_column",
+        "text-with-visual": "text_visual",
+        "metric-grid": "metric_grid",
+        "icon-feature-grid": "icon_grid",
+        "data-table": "table",
+        "data-chart": "chart",
         "thank-you": "thank_you",
-        "metric-dashboard": "metric_dashboard",
-        "process-flow": "process_flow",
-        "infographic": "swot",
-        "agenda": "agenda",
-        "timeline": "timeline",
-        "swot": "swot",
-        "funnel": "funnel",
-        "pyramid": "pyramid",
     }
     v = (visual_intent or "").strip()
     if v in aliases:

@@ -43,3 +43,10 @@ batch-report.json
 
 # Temporarily uploaded files (unless you want to commit specific test files)
 uploads/
+
+# Debug and Development
+backend/server.log
+backend/scratch/
+*.jpg
+*.png
+!backend/assets/accent.png # Keep the premium accent

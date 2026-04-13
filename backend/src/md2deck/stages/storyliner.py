@@ -2,171 +2,142 @@ import os
 import json
 import re
 import logging
-import google.generativeai as genai
+import httpx
 from dataclasses import dataclass
+from typing import Optional, List
 
 from md2deck.config import AppConfig
-from md2deck.models import PipelineArtifacts, StorySlide, Storyline, VisualIntent, SlideContentMetadata
+from md2deck.models import PipelineArtifacts, StorySlide, Storyline, VisualIntent
 
 logger = logging.getLogger(__name__)
 
-class GeminiNarrator:
-    """AI Agent to process raw markdown into a complete slide-by-slide storyline."""
-    def __init__(self, api_key: str | None = None):
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
-        self.enabled = bool(self.api_key)
-        if self.enabled:
-            try:
-                genai.configure(api_key=self.api_key)
-                # Using 1.5 pro to handle potentially large markdown files accurately
-                self.model = genai.GenerativeModel("gemini-1.5-pro")
-                logger.info("GeminiNarrator initialized.")
-            except Exception as e:
-                logger.warning(f"Failed to initialize Gemini: {e}")
-                self.enabled = False
+class OllamaNarrator:
+    """Local Ollama-powered narrator for free, private slide generation."""
+    def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama3:8b"):
+        self.base_url = os.getenv("OLLAMA_BASE_URL", base_url).rstrip("/")
+        self.model = os.getenv("OLLAMA_MODEL", model)
+        self.enabled = self._check_connection()
 
-    def generate_full_storyline(self, raw_content: str, min_slides: int, max_slides: int, template_dna: list = None) -> dict:
-        if not self.enabled:
-            return {}
+    def _check_connection(self) -> bool:
+        try:
+            resp = httpx.get(f"{self.base_url}/api/tags", timeout=2.0)
+            return resp.status_code == 200
+        except: return False
+
+    def generate_full_storyline(self, raw_content: str, min_slides: int, max_slides: int) -> dict:
+        if not self.enabled: return {}
         
-        dna_str = ""
-        if template_dna:
-            dna_str = "EXISTING TEMPLATE SLIDES (Source Slides):\n"
-            for s in template_dna:
-                content_preview = ", ".join(s.texts)[:400]
-                dna_str += f"- Slide {s.index} (Layout: {s.layout_name}): Contents: [{content_preview}]\n"
-
         prompt = f"""
-        You are an Executive Presentation Architect. 
-        Transform the following raw markdown content into a high-fidelity slide blueprint.
-
-        {dna_str}
-
-        GOALS:
-        1. SEMANTIC MAPPING: Map your slides to the EXISTING TEMPLATE SLIDES provided above. 
-           If Slide 3 in the template is a table and you have tabular data, use `"source_slide_index": 3`.
-           DO NOT replace Slide 3 with a bullet list if Slide 3 is a table; find the best matching source slide.
-        2. CLEAN TEXT: REMOVE ALL MARKDOWN SYMBOLS (###, **, -, etc). Plain English only.
-        3. BREVITY: Max 12 words per summary, max 8 words per bullet.
-        4. TARGET LENGTH: Generate {min_slides} to {max_slides} slides based on content.
-
+        TASK: Transform raw markdown into a high-fidelity slide blueprint.
+        
+        CONSTRAINTS (STRICT):
+        1. FIRST SLIDE (COVER): 
+           - Title MUST BE 2-5 words ONLY.
+           - Summary MUST BE exactly 2 lines (max 15 words total).
+        2. THANK YOU SLIDE: 
+           - ALWAYS the final slide. 
+           - Title "Thank You". 
+           - NO bullets or summary allowed.
+        3. MIDDLE SLIDES:
+           - Titles: 1-4 words ONLY.
+           - visual_intent: Choose from [title-cover, bullet-list, data-table, data-chart, thank-you].
+           - If data-table: Provide "table_data": {{"headers": ["Col1", "Col2"], "rows": [["R1C1", "R1C2"], ["R2C1", "R2C2"]]}}.
+           - If data-chart: Provide "chart_data": [["Item A", 45], ["Item B", 32]].
+        
         INPUT CONTENT:
-        {raw_content[:25000]}
-
-        OUTPUT FORMAT:
-        You MUST respond ONLY with a valid JSON object matching this schema:
+        {raw_content[:10000]}
+        
+        TARGET: {min_slides} to {max_slides} slides.
+        
+        OUTPUT FORMAT (GENERATE ONLY VALID JSON):
         {{
-          "deck_title": "Presentation Title",
+          "deck_title": "...",
           "slides": [
             {{
-              "title": "Slide Title",
-              "summary": "Impactful summary",
-              "data_points": ["Point 1", "Point 2"],
-              "visual_intent": "clean-title|agenda|metric-dashboard|chart-bar|comparison-table|icon-grid|timeline|swot|key-takeaways|thank-you|chevron-flow",
-              "source_slide_index": 0, // The index (from DNA) of the template slide to clone.
-              "icon_hint": "rocket",
-              "table_spec": {{ "headers": ["Col 1", "Col 2"], "rows": [["V1", "V2"]] }}, // If template slide is a table
-              "chart_data": {{ "categories": ["A", "B"], "series": [{{ "name": "Sales", "values": [10, 20] }}] }} // If template slide is a chart
+              "title": "...",
+              "summary": "Impactful contextual description",
+              "bullets": ["...", "..."],
+              "visual_intent": "...",
+              "table_data": null,
+              "chart_data": null
             }}
           ]
         }}
         """
         try:
-            response = self.model.generate_content(prompt)
-            match = re.search(r"\{.*\}", response.text, re.DOTALL)
-            if match:
-                return json.loads(match.group())
+            payload = {"model": self.model, "prompt": prompt, "stream": False, "format": "json"}
+            resp = httpx.post(f"{self.base_url}/api/generate", json=payload, timeout=90.0)
+            if resp.status_code == 200:
+                data = resp.json()
+                raw_response = data.get("response", "{}")
+                if isinstance(raw_response, str):
+                    # Robust extraction
+                    match = re.search(r"\{.*\}", raw_response, re.DOTALL)
+                    return json.loads(match.group()) if match else json.loads(raw_response)
+                return raw_response
         except Exception as e:
-            logger.warning(f"Gemini full storyline generation failed: {e}")
+            logger.warning(f"Ollama generation failed: {e}")
         return {}
 
-
-@dataclass(slots=True)
+@dataclass
 class StorylinerStage:
     name: str = "storyliner"
-    narrator: GeminiNarrator = None
-
+    
     def run(self, config: AppConfig, artifacts: PipelineArtifacts) -> None:
         if artifacts.document is None:
             raise RuntimeError("Ingest stage must run before storyline generation.")
- 
-        self.narrator = GeminiNarrator()
-        raw_text = artifacts.document.cleaned_text or artifacts.document.raw_text
 
+        raw_text = artifacts.document.cleaned_text or artifacts.document.raw_text
         slides: list[StorySlide] = []
         deck_title = artifacts.document.title or config.input_markdown.stem
 
-        if self.narrator.enabled:
-            # Generate the entire storyline natively via AI
-            result = self.narrator.generate_full_storyline(
-                raw_text, 
-                config.constraints.min_slides, 
-                config.constraints.max_slides,
-                template_dna=artifacts.theme.template_dna if artifacts.theme else None
-            )
-            if result and "slides" in result:
-                deck_title = re.sub(r'[*#_`]', '', result.get("deck_title", deck_title)).strip()
-                for slide_data in result["slides"]:
-                    intent_str = slide_data.get("visual_intent", "chevron-flow")
-                    try:
-                        intent = VisualIntent(intent_str)
-                    except ValueError:
-                        intent = VisualIntent.CHEVRON_FLOW
-
-                    cleaned_title = re.sub(r'[*#_`]', '', slide_data.get("title", "Untitled Slide")).strip()
-                    cleaned_summary = re.sub(r'[*#_`]', '', slide_data.get("summary", "")).strip()
-                    cleaned_points = [re.sub(r'[*#_`]', '', pt).strip() for pt in slide_data.get("data_points", [])]
-
-                    # Transform chart_data object properly to tuple lists if necessary, or pass through via metadata
-                    meta = {
-                        "summary": cleaned_summary,
-                        "icon_hint": slide_data.get("icon_hint", ""),
-                        "storyteller_insight": slide_data.get("storyteller_insight", "")
-                    }
-                    if "chart_data" in slide_data:
-                        meta["chart_data"] = slide_data["chart_data"]
-                    if "table_spec" in slide_data:
-                        meta["table_spec"] = slide_data["table_spec"]
-
-                    slides.append(
-                        StorySlide(
-                            title=cleaned_title,
-                            narrative_goal="Distill this section into a single clear visual message.",
-                            visual_intent=intent,
-                            key_points=cleaned_points,
-                            source_slide_index=slide_data.get("source_slide_index"),
-                            metadata=meta
-                        )
-                    )
+        ollama = OllamaNarrator()
+        result = {}
         
-        # Fallback if Gemini is disabled or fails
+        if ollama.enabled:
+            logger.info(f"Using Local Ollama Narrator ({ollama.model})")
+            result = ollama.generate_full_storyline(raw_text, config.constraints.min_slides, config.constraints.max_slides)
+        else:
+            logger.warning("Ollama not found. Falling back to basic parser.")
+
+        if result and "slides" in result:
+            deck_title = result.get("deck_title", deck_title)
+            for s in result["slides"]:
+                slides.append(StorySlide(
+                    title=s.get("title", "Untitled"),
+                    narrative_goal="Distill message.",
+                    visual_intent=VisualIntent(s.get("visual_intent", "bullet-list")),
+                    key_points=s.get("bullets", []) or s.get("data_points", []),
+                    metadata={
+                        "summary": s.get("summary", ""), 
+                        "bullets": s.get("bullets", []),
+                        "table_data": s.get("table_data"),
+                        "chart_data": s.get("chart_data")
+                    }
+                ))
+        
+        # Fallback if AI fails
         if not slides:
-            logger.warning("Fell back to basic parser because AI generation failed or is disabled.")
-            slides.append(
-                StorySlide(
-                    title=deck_title,
-                    narrative_goal="Introduce the topic.",
-                    visual_intent=VisualIntent.CLEAN_TITLE,
-                    key_points=[],
-                )
-            )
+            logger.warning("Fell back to simple parser because AI generation failed.")
+            slides.append(StorySlide(
+                title=deck_title,
+                narrative_goal="Intro",
+                visual_intent=VisualIntent.TITLE_COVER,
+                metadata={"summary": artifacts.document.subtitle or "Overview", "is_cover": True}
+            ))
             for section in artifacts.document.sections[:config.constraints.max_slides - 2]:
-                slides.append(
-                    StorySlide(
-                        title=section.title,
-                        narrative_goal="Present findings",
-                        visual_intent=VisualIntent.CHEVRON_FLOW,
-                        key_points=(section.bullets or section.body)[:4]
-                    )
-                )
-            slides.append(
-                StorySlide(
-                    title="Thank You",
-                    narrative_goal="Close presentation.",
-                    visual_intent=VisualIntent.THANK_YOU,
-                    key_points=["Questions & Discussion"],
-                    metadata={"closing": True}
-                )
-            )
+                slides.append(StorySlide(
+                    title=section.title,
+                    narrative_goal="Content",
+                    visual_intent=VisualIntent.BULLET_LIST,
+                    key_points=(section.bullets or section.body)[:4]
+                ))
+            slides.append(StorySlide(
+                title="Thank You",
+                narrative_goal="Closing",
+                visual_intent=VisualIntent.THANK_YOU,
+                metadata={"closing": True}
+            ))
 
         artifacts.storyline = Storyline(deck_title=deck_title, slide_target=len(slides), slides=slides)
+        logger.info(f"Storyline ready with {len(slides)} slides.")

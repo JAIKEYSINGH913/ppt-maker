@@ -9,7 +9,7 @@ from md2deck.models import PipelineArtifacts, ThemeProfile, LayoutMetadata, Slot
 from md2deck.stages.master_profiles import geometry_for_master_name
 
 
-@dataclass(slots=True)
+@dataclass
 class ThemeStage:
     name: str = "theme"
 

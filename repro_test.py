@@ -50,7 +50,7 @@ This is a long report.
     
     print(f"Slides generated: {len(artifacts.storyline.slides)}")
     for i, slide in enumerate(artifacts.storyline.slides):
-        print(f"  {i+1}. {slide.title} ({slide.visual_intent})")
+        print(f"  {i+1}. {slide.title} ({slide.visual_intent}) - icon: {getattr(slide, 'icon_hint', 'MISSING')}")
 
 if __name__ == "__main__":
     test_pipeline()

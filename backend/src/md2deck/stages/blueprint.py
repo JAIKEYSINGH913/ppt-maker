@@ -8,7 +8,7 @@ from md2deck.config import AppConfig
 from md2deck.models import DeckBlueprint, PipelineArtifacts, SlideBlueprint, VisualIntent, LayoutMetadata, ThemeProfile
 
 
-@dataclass(slots=True)
+@dataclass
 class BlueprintStage:
     name: str = "blueprint"
 
@@ -19,81 +19,85 @@ class BlueprintStage:
         max_words = config.visuals.max_words_per_card
         slides: list[SlideBlueprint] = []
         total_slides = len(artifacts.storyline.slides)
+        max_layouts = len(artifacts.theme.layout_names) if artifacts.theme else 10
 
-        for idx, story_slide in enumerate(artifacts.storyline.slides):
-            # Calculate requirements for the intelligence pass
-            reqs = {
-                "points_count": len(story_slide.key_points or []),
-                "has_picture": story_slide.visual_intent in {VisualIntent.ICON_GRID, VisualIntent.INFOGRAPHIC, VisualIntent.SWOT, VisualIntent.FUNNEL, VisualIntent.PYRAMID},
-                "is_cover": idx == 0,
-                "is_divider": story_slide.visual_intent == VisualIntent.SECTION_DIVIDER,
-                "is_thank_you": idx == total_slides - 1 or story_slide.visual_intent == VisualIntent.THANK_YOU,
-            }
+        # Extract theme colors as hex for the blueprint
+        def to_hex(rgb): return '#%02x%02x%02x' % rgb if rgb else '#000000'
+        
+        c_title = to_hex(artifacts.theme.primary_color) if artifacts.theme else "#000000"
+        c_body = to_hex(artifacts.theme.dark_color) if artifacts.theme else "#333333"
+        c_accent = to_hex(artifacts.theme.accent_colors[0]) if artifacts.theme and artifacts.theme.accent_colors else "#7F3FFF"
+
+        for i, story_slide in enumerate(artifacts.storyline.slides):
+            intent = getattr(story_slide, 'visual_intent', VisualIntent.BULLET_LIST)
+            layout_idx = 1 # Default middle layout
             
-            layout_hint = story_slide.metadata.get("layout_hint") or self._pick_optimal_layout(reqs, artifacts.theme)
-            if layout_hint == "dynamic-grid":
-                layout_hint = self._default_layout_hint(story_slide.visual_intent)
-
-            table_spec = story_slide.metadata.get("table_spec") or story_slide.metadata.get("table")
-            if (
-                not table_spec
-                and story_slide.visual_intent == VisualIntent.TABLE_FOCUS
-                and artifacts.document
-                and artifacts.document.tables
-            ):
-                t0 = artifacts.document.tables[0]
-                table_spec = {
-                    "title": t0.title,
-                    "headers": t0.headers,
-                    "rows": t0.rows[:5],
-                }
-
-            chart_spec = story_slide.metadata.get("chart_data")
-            if not chart_spec and story_slide.visual_intent in {
-                VisualIntent.CHART_FOCUS,
-                VisualIntent.METRIC_DASHBOARD,
-                VisualIntent.CHART_LINE,
-            }:
-                chart_spec = {
-                    "categories": [re.sub(r'[^A-Za-z0-9 ]+', '', f.split(':')[0])[:15] for f in story_slide.supporting_facts[:5]],
-                    "series": []
-                }
-                vals = []
-                for f in story_slide.supporting_facts[:5]:
-                    nums = re.findall(r"[-+]?\d*\.\d+|\d+", f)
-                    vals.append(float(nums[0]) if nums else 0)
-                chart_spec["series"] = [{"name": "Metric", "values": vals}]
-
-            # Enforce word limit on data points
-            raw_points = story_slide.key_points or story_slide.supporting_facts
-            data_points = self._clean_points(story_slide.title, raw_points)[:5]
-            data_points = [self._enforce_word_limit(p, max_words) for p in data_points]
-
-            theme_tokens = {
-                "primary_color": "Deep Blue" if idx % 2 == 0 else "Dark Blue",
-                "accent_color": "Cyan",
-                "font_style": "Minimalist Sans-Serif"
-            }
-
-            slides.append(
-                SlideBlueprint(
-                    title=story_slide.title,
-                    summary=self._summary_for_story_slide(story_slide),
-                    visual_intent=story_slide.visual_intent,
-                    data_points=data_points,
-                    theme_tokens=theme_tokens,
-                    chart_spec=chart_spec,
-                    table_spec=table_spec,
-                    icon_tokens=([story_slide.metadata["icon_hint"]] if story_slide.metadata.get("icon_hint") else self._default_icon_tokens(story_slide.visual_intent, story_slide.title)),
-                    layout_hint=layout_hint,
-                    max_words=max_words,
-                    source_slide_index=story_slide.source_slide_index,
-                    user_overrides={
-                        "icon_hint": story_slide.metadata.get("icon_hint"),
-                        "storyteller_insight": story_slide.metadata.get("storyteller_insight"),
-                    }
+            # 1. Front Slide: Title (2-5 words) and Description (2-3 lines)
+            if i == 0:
+                intent = VisualIntent.TITLE_COVER
+                layout_idx = 0 # Explicitly use first layout for cover
+                title = BlueprintStage._enforce_word_limit(getattr(story_slide, 'title', 'Presentation'), 5)
+                summary = self._summary_for_story_slide(story_slide)
+                summary = BlueprintStage._enforce_word_limit(summary, 30) # ~2-3 lines
+                data_points = []
+            
+            # 2. Last Slide: Thank You (No text)
+            elif i == total_slides - 1:
+                intent = VisualIntent.THANK_YOU
+                title = "" # No text on thank you slide
+                summary = ""
+                data_points = []
+                # Resolve Thank You index (usually last)
+                if artifacts.theme:
+                    layout_idx = max_layouts - 1
+                    for l_idx, m in artifacts.theme.layouts_metadata.items():
+                        if "thank" in m.name.lower():
+                            layout_idx = l_idx
+                            break
+            
+            # 3. Middle Slides: Interactive elements and middle layouts only
+            else:
+                title = BlueprintStage._enforce_word_limit(getattr(story_slide, 'title', 'Untitled'), 4)
+                # UNIVERSAL DATA EXTRACTION (bullets, key_points, etc)
+                raw_points = (
+                    getattr(story_slide, 'key_points', []) or 
+                    getattr(story_slide, 'supporting_facts', []) or 
+                    getattr(story_slide, 'bullets', []) or
+                    story_slide.metadata.get('bullets', []) or
+                    story_slide.metadata.get('data', {}).get('bullets', []) or
+                    story_slide.metadata.get('key_points', [])
                 )
+                data_points = self._clean_points(title, raw_points)[:6]
+                data_points = [self._enforce_word_limit(p, 35) for p in data_points]
+                summary = self._enforce_word_limit(self._summary_for_story_slide(story_slide), 50)
+                
+                # Layout restriction: AVOID index 0 (cover) and max_layouts-1 (thank you)
+                source_idx = getattr(story_slide, 'source_slide_index', None)
+                if source_idx is not None and 1 <= source_idx < max_layouts - 1:
+                    layout_idx = source_idx
+                else:
+                    # Fallback to a middle layout if source_idx was invalid or cover/thankyou
+                    layout_idx = 1 if max_layouts > 1 else 0
+
+            slide_metadata = getattr(story_slide, 'metadata', {})
+            blueprint_slide = SlideBlueprint(
+                title=title,
+                summary=summary,
+                data_points=data_points,
+                visual_intent=intent,
+                source_slide_index=layout_idx,
+                icon_tokens=[slide_metadata.get('icon_hint', '')] if slide_metadata.get('icon_hint', '') else [],
+                table_spec=slide_metadata.get('table_spec'),
+                chart_spec=slide_metadata.get('chart_data'),
+                title_color=c_title,
+                body_color=c_body,
+                accent_color=c_accent,
+                meta={
+                    "original_index": i,
+                    "storyteller_insight": slide_metadata.get('summary', '')
+                }
             )
+            slides.append(blueprint_slide)
 
         artifacts.blueprint = DeckBlueprint(
             deck_title=artifacts.storyline.deck_title,
@@ -134,23 +138,24 @@ class BlueprintStage:
         return {"labels": labels, "values": values}
 
     @staticmethod
-    def _summary_for_story_slide(story_slide) -> str:
-        if story_slide.metadata.get("summary"):
-            summary = story_slide.metadata["summary"]
-        elif story_slide.metadata.get("agenda"):
+    def _summary_for_story_slide(story_slide: Any) -> str:
+        metadata = getattr(story_slide, 'metadata', {})
+        if metadata.get("summary"):
+            summary = metadata["summary"]
+        elif metadata.get("agenda"):
             summary = "A structured overview of the presentation flow"
-        elif story_slide.metadata.get("closing"):
+        elif metadata.get("closing"):
             summary = "Questions & Discussion"
-        elif story_slide.key_points:
-            summary = story_slide.key_points[0]
-        elif story_slide.supporting_facts:
-            summary = story_slide.supporting_facts[0]
+        elif getattr(story_slide, 'key_points', []):
+            summary = getattr(story_slide, 'key_points')[0]
+        elif getattr(story_slide, 'supporting_facts', []):
+            summary = getattr(story_slide, 'supporting_facts')[0]
         else:
-            summary = story_slide.narrative_goal
-
+            summary = getattr(story_slide, 'narrative_goal', 'Focus on key insights.')
         # Avoid summary duplicating the title
-        if BlueprintStage._canonicalize(summary) == BlueprintStage._canonicalize(story_slide.title):
-            summary = story_slide.narrative_goal
+        title = getattr(story_slide, 'title', '')
+        if BlueprintStage._canonicalize(summary) == BlueprintStage._canonicalize(title):
+            summary = getattr(story_slide, 'narrative_goal', 'Key takeaways')
         return summary[:140]
 
     @staticmethod
@@ -186,19 +191,15 @@ class BlueprintStage:
     def _default_icon_tokens(intent: VisualIntent, title: str = "") -> list[str]:
         """Generate contextual icon tokens based on visual intent and slide title."""
         icon_map = {
-            VisualIntent.AGENDA: ["outline", "section", "map"],
-            VisualIntent.EXECUTIVE_SUMMARY_CARDS: ["insight", "growth", "risk"],
-            VisualIntent.TIMELINE: ["milestone", "clock", "trend"],
-            VisualIntent.COMPARISON_GRID: ["compare", "balance", "choice"],
-            VisualIntent.CHEVRON_FLOW: ["step", "arrow", "decision"],
-            VisualIntent.ICON_GRID: ["theme", "cluster", "signal"],
-            VisualIntent.METRIC_DASHBOARD: ["metric", "trend", "benchmark"],
-            VisualIntent.CHART_FOCUS: ["chart", "bar", "signal"],
-            VisualIntent.TABLE_FOCUS: ["table", "grid", "evidence"],
-            VisualIntent.KEY_TAKEAWAYS: ["flag", "signal", "action"],
+            VisualIntent.TITLE_COVER: ["innovation", "data", "insight"],
+            VisualIntent.EXECUTIVE_SUMMARY: ["insight", "growth", "risk"],
+            VisualIntent.BULLET_LIST: ["outline", "section", "map"],
+            VisualIntent.SECTION_DIVIDER: ["step", "arrow", "decision"],
+            VisualIntent.ICON_FEATURE_GRID: ["theme", "cluster", "signal"],
+            VisualIntent.METRIC_GRID: ["metric", "trend", "benchmark"],
+            VisualIntent.DATA_CHART: ["chart", "bar", "signal"],
+            VisualIntent.DATA_TABLE: ["table", "grid", "evidence"],
             VisualIntent.THANK_YOU: ["conclusion", "flag", "action"],
-            VisualIntent.INFOGRAPHIC: ["insight", "data", "chart"],
-            VisualIntent.CLEAN_TITLE: ["innovation", "data", "insight"],
         }
 
         base_tokens = icon_map.get(intent, [])
@@ -256,8 +257,16 @@ class BlueprintStage:
     @staticmethod
     def _default_layout_hint(intent: VisualIntent) -> str:
         hint_map = {
-            VisualIntent.CLEAN_TITLE: "cover",
-            VisualIntent.SECTION_DIVIDER: "dynamic-grid",
+            VisualIntent.TITLE_COVER: "cover",
+            VisualIntent.SECTION_DIVIDER: "divider",
             VisualIntent.THANK_YOU: "thank_you",
+            VisualIntent.BULLET_LIST: "content",
+        }
+        return hint_map.get(intent, "dynamic-grid")
+        hint_map = {
+            VisualIntent.TITLE_COVER: "cover",
+            VisualIntent.SECTION_DIVIDER: "divider",
+            VisualIntent.THANK_YOU: "thank_you",
+            VisualIntent.BULLET_LIST: "content",
         }
         return hint_map.get(intent, "dynamic-grid")

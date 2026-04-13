@@ -46,16 +46,17 @@ ARTIFACTS: Dict[str, List[dict]] = {}
 # Store the actual objects for re-rendering
 PIPELINE_DATA: Dict[str, Any] = {}
 
+import tempfile
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 UPLOAD_DIR = BASE_DIR / "uploads"
-OUTPUT_DIR = BASE_DIR / "exports"
+OUTPUT_DIR = Path(os.path.expanduser("~/Downloads")).resolve()
+MASTER_DIR = (BASE_DIR.parent / "Slide Master").resolve()
+TEMPLATES_META = (BASE_DIR / "src/md2deck/templates_meta.json").resolve()
+THUMBNAILS_DIR = (BASE_DIR / "thumbnails").resolve()
 
 UPLOAD_DIR.mkdir(exist_ok=True)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-MASTER_DIR = BASE_DIR.parent / "Slide Master"
-TEMPLATES_META = BASE_DIR / "src/md2deck/templates_meta.json"
-THUMBNAILS_DIR = BASE_DIR / "thumbnails"
 THUMBNAILS_DIR.mkdir(exist_ok=True)
 
 # Mount thumbnails as static files so the frontend can <img src="..."> them
@@ -176,7 +177,6 @@ def run_deck_pipeline(job_id: str, md_path: Path, master_path: Path, output_path
     except Exception as e:
         JOBS[job_id]["status"] = "failed"
         JOBS[job_id]["error"] = str(e)
-        print(f"Pipeline error: {e}")
         import traceback
         traceback.print_exc()
 
@@ -258,7 +258,11 @@ async def finalize_job(job_id: str):
                 slide.user_overrides = previews[i].get("overrides", {})
                 # Important: Allow user to manually change the visual intent from the UI
                 if "visual_intent" in previews[i]:
-                    slide.visual_intent = previews[i]["visual_intent"]
+                    try:
+                        from md2deck.models import VisualIntent
+                        slide.visual_intent = VisualIntent(previews[i]["visual_intent"])
+                    except (ValueError, KeyError):
+                        pass # Keep existing if invalid
 
         job = JOBS[job_id]
         output_path = Path(job["disk_path"])
@@ -306,17 +310,19 @@ async def download_deck(job_id: str):
     job = JOBS[job_id]
     pptx_path = Path(job["disk_path"])
     md_path = Path(job["md_path"])
-    manifest_path = pptx_path.with_suffix(".manifest.json")
 
     if not pptx_path.exists():
         raise HTTPException(status_code=404, detail="PPTX file not found on disk")
     
-    # Create a ZIP package in the active output directory (Downloads)
     zip_filename = f"{pptx_path.stem}_Package.zip"
-    zip_path = pptx_path.parent / zip_filename
     
+    import io
+    from fastapi.responses import StreamingResponse
+
+    # Create ZIP in memory to avoid writing to an 'exports' folder on disk
+    io_buffer = io.BytesIO()
     try:
-        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        with zipfile.ZipFile(io_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
             # 1. Final Presentation
             zipf.write(pptx_path, arcname=job["output_filename"])
             # 2. Universal Slides JSON
@@ -327,13 +333,15 @@ async def download_deck(job_id: str):
             if md_path.exists():
                 zipf.write(md_path, arcname=md_path.name)
     except Exception as e:
-        logger.error(f"Failed to create ZIP package: {e}")
+        import logging
+        logging.error(f"Failed to create ZIP package in memory: {e}")
         raise HTTPException(status_code=500, detail="Failed to package download")
 
-    return FileResponse(
-        zip_path, 
-        filename=zip_filename,
-        media_type="application/zip"
+    io_buffer.seek(0)
+    return StreamingResponse(
+        io_buffer,
+        media_type="application/zip",
+        headers={"Content-Disposition": f"attachment; filename=\"{zip_filename}\""}
     )
 
 
